@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.itheima.bos.domain.Staff" table="bc_staff">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" length="32" />
+            <generator class="identity" />
+        </id>
+    <property name="company" column="company"/>
+    <property name="name" column="name"/>
+    <property name="sex" column="sex"/>
+    <property name="sid" column="sid"/>
+    <property name="age" column="age"/>
+    <property name="job" column="job"/>
+    <property name="salary" column="salary"/>
+    <property name="dateSalary" column="date_salary"/>
+    <property name="persionalMoney" column="persional_money"/>
+    <property name="publicMoney" column="public_money"/>
+    <property name="other" column="other"/>
+    <property name="cardNumber" column="card_number"/>
+    <property name="bank" column="bank"/>
+    <property name="beginTime" column="begin_time"/>
+    <property name="endTime" column="end_time"/>
+    <property name="phone" column="phone"/>
+    <property name="register" column="register"/>
+    <property name="remark" column="remark"/>
+    <property name="isOutage" column="is_outage"/>
+    <property name="isNoPm" column="is_no_pm"/>
+    <property name="isFire" column="is_fire"/>
+    <property name="isContine" column="is_contine"/>
+    <property name="needNotice" column="need_notice"/>
+    <property name="agreement" column="agreement"/>
+    <property name="card" column="card"/>
+    <property name="comeTime" column="come_time"/>
+    <property name="goTime" column="go_time"/>
+
+    <query name="staff.delete">
+    	UPDATE Staff SET isFire = '1' WHERE id = ?
+    </query>
+
+    <query name="staff.notice">
+            UPDATE Staff SET needNotice = '1' WHERE endTime >= ?
+    </query>
+    <query name="staff.notnotice">
+            UPDATE Staff SET needNotice = '0' WHERE ? > endTime
+    </query>
+
+
+    </class>
+</hibernate-mapping>
